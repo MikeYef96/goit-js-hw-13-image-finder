@@ -7,59 +7,38 @@ import galleryList from './tamplate/galleryList.hbs';
 import photoContainer from './tamplate/photoContainer.hbs';
 const materialIcons = require('material-design-icons');
 
-// const refs = {
-//   countriesList: document.querySelector('.countries__list'),
-//   searchInput: document.querySelector('.search__input'),
-// };
+const state = {
+  searchValue: '',
+  pageNumber: 1,
+};
 
-// refs.searchInput.addEventListener('input', debounce(changeInputHandler, 500));
+function getGlobalData(searchValue, pageNumber) {
+  return apiService(searchValue, pageNumber).then(data => {
+    let string = galleryList(data);
+    return string;
+  });
+}
 
-// function closeNotificationHandler() {
-//   const notify = document.querySelector('.ui-pnotify');
-//   notify.addEventListener('click', closeNotification);
+refs.form.addEventListener('submit', event => {
+  event.preventDefault();
+  // refs.gallery.innerHTML = "";
+  state.searchValue = event.target.query.value;
+  state.pageNumber = 1;
+  getGlobalData(state.searchValue, state.pageNumber).then(
+    string => (refs.gallery.innerHTML = string),
+  );
+});
 
-//   function closeNotification(event) {
-//     if (event.currentTarget) {
-//       notify.remove('ui-pnotify');
-//     }
-//   }
-// }
-
-// function changeInputHandler(event) {
-//   if (event.target.value === '' || event.target.value === ' ') {
-//     PNotify.notice({
-//       text: 'Please, enter country name!',
-//       type: 'notice',
-//       type: 'notice',
-//       delay: 2000,
-//     });
-//     closeNotificationHandler();
-//     return;
-//   }
-//   fetchApi
-//     .fetchCountries(event.target.value)
-//     .then(data => {
-//       if (data.length === 1) {
-//         refs.countriesList.innerHTML = `${countryItem(data)}`;
-//         PNotify.success({
-//           title: 'You found country!',
-//           type: 'success',
-//           text: 'You found country which you was searching',
-//           delay: 2000,
-//         });
-//         closeNotificationHandler();
-//       }
-//       if (data.length >= 2 && data.length <= 10) {
-//         refs.countriesList.innerHTML = `${countryList(data)}`;
-//       }
-//       if (data.length > 10) {
-//         PNotify.error({
-//           text: 'Tooooo many matches.Please enter more specific query!',
-//           type: 'error',
-//           delay: 2000,
-//         });
-//         closeNotificationHandler();
-//       }
-//     })
-//     .catch(error => console.log(error));
-// }
+refs.button.addEventListener('click', event => {
+  event.preventDefault();
+  state.pageNumber += 1;
+  getGlobalData(state.searchValue, state.pageNumber)
+    .then(string => refs.gallery.insertAdjacentHTML('beforeend', string))
+    .then(() => {
+      const position = refs.button.offsetTop;
+      window.scrollTo({
+        top: position,
+        behavior: 'smooth',
+      });
+    });
+});
