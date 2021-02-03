@@ -21,7 +21,7 @@ function getGlobalData(searchValue, pageNumber) {
 
 refs.form.addEventListener('submit', event => {
   event.preventDefault();
-  // refs.gallery.innerHTML = "";
+
   state.searchValue = event.target.query.value;
   state.pageNumber = 1;
   getGlobalData(state.searchValue, state.pageNumber).then(
