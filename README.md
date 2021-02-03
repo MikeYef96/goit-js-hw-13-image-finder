@@ -1,2 +1,2 @@
-# goit-js-hw-12-countries
- https://mikeyef96.github.io/goit-js-hw-12-countries/
+# goit-js-hw-13-image-finder
+ https://mikeyef96.github.io/goit-js-hw-13-image-finder/
