@@ -1,25 +1,33 @@
 html {
   box-sizing: border-box;
-  background-image: linear-gradient(to top left, lightblue, pink);
+  background-image: linear-gradient(to top left, #a2ecb8, lightblue);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  padding: 0;
+  margin: 0;
 }
 
 ul {
-  list-style: none;
   padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .container {
-  display: flex;
-  justify-content: center;
-  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 1200px;
   min-height: 100px;
 }
 
@@ -33,17 +41,20 @@ input {
   margin-right: 30px;
 }
 
-.gallery {
+ul.gallery {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
+  max-width: 1140px;
+  margin-top: 50px;
 }
 .gallery:nth-child(3n) {
   margin-right: 0;
 }
 
 .gallery-item {
-  margin: 30px 30px 0 30px;
+  margin: 30px 15px 0 15px;
 }
 
 .button {
