@@ -29,9 +29,12 @@ refs.form.addEventListener('submit', event => {
   );
 });
 
-refs.button.addEventListener('click', event => {
+const loadIconsHandler = event => {
   event.preventDefault();
   state.pageNumber += 1;
+  if (event.currentTarget) {
+    document.querySelector('.btn__search').style.display = 'none';
+  }
   getGlobalData(state.searchValue, state.pageNumber)
     .then(string => refs.gallery.insertAdjacentHTML('beforeend', string))
     .then(() => {
@@ -41,4 +44,7 @@ refs.button.addEventListener('click', event => {
         behavior: 'smooth',
       });
     });
-});
+};
+
+refs.button.addEventListener('click', loadIconsHandler);
+refs.loadMoreBtn.addEventListener('click', loadIconsHandler);
