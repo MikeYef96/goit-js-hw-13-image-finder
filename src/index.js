@@ -37,7 +37,7 @@ refs.button.addEventListener('click', event => {
     .then(() => {
       const position = refs.button.offsetTop;
       window.scrollTo({
-        top: position,
+        bottom: position,
         behavior: 'smooth',
       });
     });
