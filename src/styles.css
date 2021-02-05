@@ -69,6 +69,10 @@ ul.gallery {
   border-radius: 4px;
 }
 
+.is-hidden {
+  display: none;
+}
+
 .button:hover,
 .button:focus {
   cursor: pointer;

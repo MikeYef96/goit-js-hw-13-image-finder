@@ -29,11 +29,14 @@ refs.form.addEventListener('submit', event => {
   );
 });
 
+refs.loadMoreBtn.classList.add('is-hidden');
+
 const loadIconsHandler = event => {
   event.preventDefault();
   state.pageNumber += 1;
   if (event.currentTarget) {
-    document.querySelector('.btn__search').style.display = 'none';
+    refs.searchBtn.classList.add('is-hidden');
+    refs.loadMoreBtn.classList.remove('is-hidden');
   }
   getGlobalData(state.searchValue, state.pageNumber)
     .then(string => refs.gallery.insertAdjacentHTML('beforeend', string))
